@@ -4,8 +4,10 @@
 
 <ul>
   <% @clean_symbols_array.each do |currency|%>
-  <li>
-  Convert 1 <%= @user_first_currency %> to <%= currency %>...
-  <% end %>
-  </li>
+    <li>
+      <a href = <%="https://3000-uchicagoboot-dashboards-mn4fvmtqpm2.ws-us93.gitpod.io/forex/#{@user_first_currency}/#{currency}" %>> Convert 1 <%= 
+        @user_first_currency %> to <%= currency %>...
+        </a>
+      <% end %>
+    </li>
 </ul>

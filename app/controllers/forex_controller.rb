@@ -36,7 +36,7 @@ class ForexController < ActionController::Base
 
 
 
-  
+
   def second_currency_list
   
     currency_list_url = "https://api.exchangerate.host/symbols"
@@ -71,6 +71,27 @@ class ForexController < ActionController::Base
   
   end
 
+
+  def conversion
+    
+    @user_first_currency = params.fetch("user_currency_one")
+    @user_second_currency = params.fetch("user_currency_two")
+
+    conversion_url = "https://api.exchangerate.host/convert?from=#{@user_first_currency}&to=#{@user_second_currency}"
+
+    require "open-uri"
+
+    raw_response = URI.open(conversion_url).read
+
+    require "json"
+    
+    parsed_response = JSON.parse(raw_response)
+
+    @exchangerate = parsed_response.fetch("result")
+
+    render({:template => "/forex/forex_conversion"})
+
+  end 
 
 
 end
